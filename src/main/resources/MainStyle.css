@@ -30,7 +30,7 @@
 .text-area{
     -fx-text-fill: #e8e8e8;
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 18Kpx;
+    -fx-font-size: 18px;
 }
 
 .text-area .content{

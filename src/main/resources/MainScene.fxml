@@ -5,42 +5,48 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:controller="MainController" stylesheets="MainStyle.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml/1">
-    <TextArea layoutX="13.0" layoutY="84.0" prefHeight="255.0" prefWidth="567.0" AnchorPane.bottomAnchor="20.0"
-              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0" wrapText="true"/>
-    <HBox alignment="CENTER" layoutX="20.0" prefHeight="45.0" prefWidth="200.0" spacing="10.0"
-          AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-        <Button mnemonicParsing="false" prefWidth="70.0" text="Copy" focusTraversable="false">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="MainStyle.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+    <TextArea fx:id="textArea" layoutX="13.0" layoutY="84.0" prefHeight="255.0" prefWidth="567.0" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0" />
+    <HBox alignment="CENTER" layoutX="20.0" prefHeight="45.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <Button focusTraversable="false" mnemonicParsing="false" onAction="#cut" prefWidth="70.0" text="Cut">
             <tooltip>
                 <Tooltip text="CTRL+C">
                     <font>
-                        <Font name="Segoe UI" size="14.0"/>
+                        <Font name="Segoe UI" size="14.0" />
                     </font>
                 </Tooltip>
             </tooltip>
         </Button>
-        <Button mnemonicParsing="false" prefWidth="70.0" text="Paste" focusTraversable="false">
+        <Button focusTraversable="false" mnemonicParsing="false" onAction="#paste" prefWidth="100.0" text="Paste">
             <tooltip>
                 <Tooltip text="CTRL+V">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Tooltip>
             </tooltip>
         </Button>
-        <Button mnemonicParsing="false" prefWidth="70.0" text="Cut" focusTraversable="false">
+        <Button focusTraversable="false" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="Delete">
             <tooltip>
                 <Tooltip text="CTRL+X">
                     <font>
-                        <Font name="Segoe UI" size="14.0"/>
+                        <Font name="Segoe UI" size="14.0" />
                     </font>
                 </Tooltip>
             </tooltip>
         </Button>
+      <Pane prefHeight="1.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+      <Button focusTraversable="false" mnemonicParsing="false" onAction="#undo" prefWidth="100.0" text="Undo">
+         <tooltip>
+            <Tooltip text="CTRL+X">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Tooltip>
+         </tooltip>
+      </Button>
     </HBox>
 </AnchorPane>
