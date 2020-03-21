@@ -11,6 +11,7 @@ public class PasteCommand extends Command {
 
     @Override
     public boolean execute() {
+        saveBackup();
         text.paste();
         return true;
     }
