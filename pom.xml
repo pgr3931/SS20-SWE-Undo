@@ -8,5 +8,7 @@
     <artifactId>SS20-SWE-Undo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <dependencies>
 
+    </dependencies>
 </project>
