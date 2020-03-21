@@ -3,9 +3,9 @@ package command.pattern.commands;
 import command.pattern.CommandInvoker;
 import command.pattern.Text;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-
+/**
+ * Implementation for the cut command
+ */
 public class CutCommand extends Command {
 
     public CutCommand(Text t, CommandInvoker i) {
@@ -15,14 +15,7 @@ public class CutCommand extends Command {
     @Override
     public boolean execute() {
         saveBackup();
-
-        Toolkit.getDefaultToolkit()
-                .getSystemClipboard()
-                .setContents(
-                        new StringSelection(text.getSelection()),
-                        null
-                );
-
+        invoker.setClipBoard(text.getSelection());
         text.deleteSelection();
         return true;
     }

@@ -1,17 +1,14 @@
-import command.pattern.CommandInvoker;
-import command.pattern.Text;
-import command.pattern.commands.CutCommand;
-import command.pattern.commands.DeleteCommand;
-import command.pattern.commands.PasteCommand;
-import command.pattern.commands.UndoCommand;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
+import command.pattern.*;
+import command.pattern.commands.*;
 
+import javafx.beans.binding.Bindings;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    public TextArea textArea;
     private Text text;
     private CommandInvoker invoker;
 
@@ -31,9 +28,22 @@ public class MainController implements Initializable {
         invoker.execute(new UndoCommand(text, invoker));
     }
 
+
+
+    public TextArea textArea;
+    public Button cutBtn;
+    public Button pasteBtn;
+    public Button deleteBtn;
+    public Button undoBtn;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         text = new Text(textArea);
         invoker = new CommandInvoker();
+
+        undoBtn.disableProperty().bind(Bindings.size(invoker.getHistory()).isEqualTo(0));
+        cutBtn.disableProperty().bind(Bindings.isEmpty(textArea.selectedTextProperty()));
+        deleteBtn.disableProperty().bind(Bindings.isEmpty(textArea.selectedTextProperty()));
+        pasteBtn.disableProperty().bind(Bindings.isEmpty(invoker.clipBoardProperty()));
     }
 }

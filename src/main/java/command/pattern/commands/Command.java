@@ -3,21 +3,30 @@ package command.pattern.commands;
 import command.pattern.CommandInvoker;
 import command.pattern.Text;
 
+/**
+ * Abstract command class
+ */
 public abstract class Command {
     protected Text text;
     private String backup;
     protected CommandInvoker invoker;
 
-    public Command(Text t, CommandInvoker i){
+    public Command(Text t, CommandInvoker i) {
         text = t;
         invoker = i;
     }
 
-    public void saveBackup(){
+    /**
+     * Saves the current state of the text editor
+     */
+    public void saveBackup() {
         backup = text.getText();
     }
 
-    public void undo(){
+    /**
+     * Reverts the text back to the last state
+     */
+    public void undo() {
         text.setText(backup);
     }
 
