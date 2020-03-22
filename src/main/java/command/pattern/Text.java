@@ -17,11 +17,6 @@ public class Text {
         return area.getText();
     }
 
-    public void setText(String s) {
-        area.setText(s);
-        area.positionCaret(area.getText().length());
-    }
-
     public String getSelection() {
         return area.getSelectedText();
     }
@@ -30,11 +25,27 @@ public class Text {
         area.replaceSelection("");
     }
 
-    public void paste(String s) {
+    public int getIndex() {
+        return area.getSelection().getStart();
+    }
+
+    public void insertText(String s, int i) {
+        area.insertText(i, s);
+    }
+
+    public void deleteText(int start, int end) {
+        area.deleteText(start, end);
+    }
+
+    public int paste(String s) {
         if (!area.getSelectedText().isEmpty()) {
+            int start = getIndex();
             area.replaceSelection(s);
+            return start;
         } else {
-            area.insertText(area.getCaretPosition(), s);
+            int start = area.getCaretPosition();
+            area.insertText(start, s);
+            return start;
         }
     }
 }

@@ -8,7 +8,6 @@ import command.pattern.Text;
  */
 public abstract class Command {
     protected Text text;
-    private String backup;
     protected CommandInvoker invoker;
 
     public Command(Text t, CommandInvoker i) {
@@ -16,19 +15,7 @@ public abstract class Command {
         invoker = i;
     }
 
-    /**
-     * Saves the current state of the text editor
-     */
-    public void saveBackup() {
-        backup = text.getText();
-    }
-
-    /**
-     * Reverts the text back to the last state
-     */
-    public void undo() {
-        text.setText(backup);
-    }
+    public abstract void undo();
 
     public abstract boolean execute();
 }

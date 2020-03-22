@@ -5,6 +5,8 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,7 +31,6 @@ public class MainController implements Initializable {
     }
 
 
-
     public TextArea textArea;
     public Button cutBtn;
     public Button pasteBtn;
@@ -40,6 +41,14 @@ public class MainController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         text = new Text(textArea);
         invoker = new CommandInvoker();
+
+        // Overwrite default text processing
+        textArea.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+            if(!e.getCode().isArrowKey()) {
+                e.consume();
+                invoker.execute(new TypeCommand(text, invoker, textArea.getCaretPosition(), e.isShiftDown(), e.getCode()));
+            }
+        });
 
         undoBtn.disableProperty().bind(Bindings.size(invoker.getHistory()).isEqualTo(0));
         cutBtn.disableProperty().bind(Bindings.isEmpty(textArea.selectedTextProperty()));
