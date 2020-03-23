@@ -27,7 +27,7 @@ public class MainController implements Initializable {
     }
 
     public void undo() {
-        invoker.execute(new UndoCommand(text, invoker));
+        invoker.undo();
     }
 
 
