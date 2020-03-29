@@ -15,7 +15,7 @@ public class Main extends Application {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
             primaryStage.setScene(new Scene(root));
-            primaryStage.setTitle("Simple Editor");
+            primaryStage.setTitle("Memento Editor");
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
