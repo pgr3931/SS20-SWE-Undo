@@ -6,10 +6,10 @@ import javafx.scene.control.TextArea;
  * Receiver class
  * Executes all commands inside the editor window
  */
-public class Text {
+public class OperationReceiver {
     private TextArea area;
 
-    public Text(TextArea area) {
+    public OperationReceiver(TextArea area) {
         this.area = area;
     }
 

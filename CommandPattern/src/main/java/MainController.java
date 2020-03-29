@@ -10,20 +10,23 @@ import javafx.scene.input.KeyEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Client class
+ */
 public class MainController implements Initializable {
-    private Text text;
+    private OperationReceiver operationReceiver;
     private CommandInvoker invoker;
 
     public void cut() {
-        invoker.execute(new CutCommand(text, invoker));
+        invoker.execute(new CutCommand(operationReceiver, invoker));
     }
 
     public void paste() {
-        invoker.execute(new PasteCommand(text, invoker));
+        invoker.execute(new PasteCommand(operationReceiver, invoker));
     }
 
     public void delete() {
-        invoker.execute(new DeleteCommand(text, invoker));
+        invoker.execute(new DeleteCommand(operationReceiver, invoker));
     }
 
     public void undo() {
@@ -39,14 +42,14 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        text = new Text(textArea);
+        operationReceiver = new OperationReceiver(textArea);
         invoker = new CommandInvoker();
 
         // Overwrite default text processing
         textArea.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if(!e.getCode().isArrowKey()) {
                 e.consume();
-                invoker.execute(new TypeCommand(text, invoker, textArea.getCaretPosition(), e.isShiftDown(), e.getCode()));
+                invoker.execute(new TypeCommand(operationReceiver, invoker, textArea.getCaretPosition(), e.isShiftDown(), e.getCode()));
             }
         });
 

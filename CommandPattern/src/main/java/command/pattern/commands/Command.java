@@ -1,17 +1,17 @@
 package command.pattern.commands;
 
 import command.pattern.CommandInvoker;
-import command.pattern.Text;
+import command.pattern.OperationReceiver;
 
 /**
  * Abstract command class
  */
 public abstract class Command {
-    protected Text text;
+    protected OperationReceiver operationReceiver;
     protected CommandInvoker invoker;
 
-    public Command(Text t, CommandInvoker i) {
-        text = t;
+    public Command(OperationReceiver t, CommandInvoker i) {
+        operationReceiver = t;
         invoker = i;
     }
 
