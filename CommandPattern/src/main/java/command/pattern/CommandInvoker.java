@@ -1,6 +1,7 @@
 package command.pattern;
 
 import command.pattern.commands.Command;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,21 +11,39 @@ import javafx.collections.ObservableList;
  */
 public class CommandInvoker {
     private ObservableList<Command> history = FXCollections.observableArrayList();
+    private SimpleIntegerProperty index = new SimpleIntegerProperty(-1);
     private SimpleStringProperty clipBoard = new SimpleStringProperty();
+
+    private void removeHistoryFromIndex() {
+        if (!history.isEmpty() && index.get() < history.size() - 1) {
+            history.remove(index.get(), history.size() - 1);
+        }
+    }
 
     public void execute(Command c) {
         if (c.execute()) {
+            removeHistoryFromIndex();
             history.add(c);
+            index.set(index.get() + 1);
             // delete the oldest command after 100 executions
             if (history.size() >= 100) {
                 history.remove(0);
+                index.set(index.get() - 1);
             }
         }
     }
 
     public void undo() {
-        if (!history.isEmpty()) {
-            history.remove(history.size() - 1).undo();
+        if (!history.isEmpty() && index.get() >= 0) {
+            history.get(index.get()).undo();
+            index.set(index.get() - 1);
+        }
+    }
+
+    public void redo() {
+        if (!history.isEmpty() && index.get() < history.size() - 1) {
+            index.set(index.get() + 1);
+            history.get(index.get()).redo();
         }
     }
 
@@ -42,6 +61,10 @@ public class CommandInvoker {
      */
     public ObservableList<Command> getHistory() {
         return history;
+    }
+
+    public SimpleIntegerProperty getIndex(){
+        return index;
     }
 
     public SimpleStringProperty clipBoardProperty() {

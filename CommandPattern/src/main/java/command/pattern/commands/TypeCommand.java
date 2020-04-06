@@ -33,6 +33,11 @@ public class TypeCommand extends Command {
     }
 
     @Override
+    public void redo() {
+
+    }
+
+    @Override
     public boolean execute() {
         switch (code) {
             case BACK_SPACE:

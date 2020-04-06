@@ -14,6 +14,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         try {
             AnchorPane root = FXMLLoader.load(getClass().getResource("MainScene.fxml"));
+            primaryStage.setMinWidth(725);
+            primaryStage.setMinHeight(300);
+            primaryStage.setMaxWidth(725);
+            primaryStage.setMaxHeight(1000);
             primaryStage.setScene(new Scene(root));
             primaryStage.setTitle("Command Editor");
             primaryStage.show();

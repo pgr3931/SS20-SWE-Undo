@@ -20,6 +20,11 @@ public class PasteCommand extends Command {
     }
 
     @Override
+    public void redo() {
+
+    }
+
+    @Override
     public boolean execute() {
         String s = invoker.getClipBoard();
         start = operationReceiver.paste(s);

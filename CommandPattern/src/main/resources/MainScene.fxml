@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="MainStyle.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
-    <TextArea fx:id="textArea" layoutX="13.0" layoutY="84.0" prefHeight="255.0" prefWidth="567.0" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0" />
+    <TextArea fx:id="textArea" layoutX="13.0" layoutY="84.0" prefHeight="255.0" prefWidth="567.0" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="75.0" />
     <HBox alignment="CENTER" layoutX="20.0" prefHeight="45.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-        <Button focusTraversable="false" mnemonicParsing="false" onAction="#cut" prefWidth="70.0" text="Cut"
-                fx:id="cutBtn"/>
-        <Button focusTraversable="false" mnemonicParsing="false" onAction="#paste" prefWidth="100.0" text="Paste"
-                fx:id="pasteBtn"/>
-        <Button focusTraversable="false" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="Delete"
-                fx:id="deleteBtn"/>
+        <Button fx:id="cutBtn" focusTraversable="false" mnemonicParsing="false" onAction="#cut" prefWidth="70.0" text="Cut" />
+        <Button fx:id="pasteBtn" focusTraversable="false" mnemonicParsing="false" onAction="#paste" prefWidth="100.0" text="Paste" />
+        <Button fx:id="deleteBtn" focusTraversable="false" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="Delete" />
       <Pane prefHeight="1.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-        <Button focusTraversable="false" mnemonicParsing="false" onAction="#undo" prefWidth="100.0" text="Undo"
-                fx:id="undoBtn"/>
+        <Button fx:id="redoBtn" focusTraversable="false" mnemonicParsing="false" onAction="#redo" prefWidth="100.0" text="Redo" />
+      <Button fx:id="undoBtn" focusTraversable="false" mnemonicParsing="false" onAction="#undo" prefWidth="100.0" text="Undo" />
     </HBox>
+   <ListView fx:id="historyList" focusTraversable="false" layoutX="409.0" layoutY="75.0" prefHeight="305.0" prefWidth="194.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0" />
 </AnchorPane>

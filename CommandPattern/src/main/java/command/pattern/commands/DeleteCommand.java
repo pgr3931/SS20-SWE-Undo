@@ -20,6 +20,11 @@ public class DeleteCommand extends Command {
     }
 
     @Override
+    public void redo() {
+
+    }
+
+    @Override
     public boolean execute() {
         deletedString = operationReceiver.getSelection();
         index = operationReceiver.getIndex();

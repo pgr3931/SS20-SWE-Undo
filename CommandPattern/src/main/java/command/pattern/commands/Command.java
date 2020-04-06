@@ -17,5 +17,12 @@ public abstract class Command {
 
     public abstract void undo();
 
+    public abstract void redo();
+
     public abstract boolean execute();
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 }

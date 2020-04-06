@@ -20,6 +20,11 @@ public class CutCommand extends Command {
     }
 
     @Override
+    public void redo() {
+        execute();
+    }
+
+    @Override
     public boolean execute() {
         cutString = operationReceiver.getSelection();
         invoker.setClipBoard(cutString);
