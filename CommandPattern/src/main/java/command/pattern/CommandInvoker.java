@@ -14,12 +14,6 @@ public class CommandInvoker {
     private SimpleIntegerProperty index = new SimpleIntegerProperty(-1);
     private SimpleStringProperty clipBoard = new SimpleStringProperty();
 
-    private void removeHistoryFromIndex() {
-        if (!history.isEmpty() && index.get() < history.size() - 1) {
-            history.remove(index.get(), history.size() - 1);
-        }
-    }
-
     public void execute(Command c) {
         if (c.execute()) {
             removeHistoryFromIndex();
@@ -47,6 +41,14 @@ public class CommandInvoker {
         }
     }
 
+    private void removeHistoryFromIndex() {
+        if (index.get() == -1) {
+            history.clear();
+        } else if (!history.isEmpty() && index.get() < history.size() - 1) {
+            history.remove(index.get() + 1, history.size());
+        }
+    }
+
     public void setClipBoard(String clipBoard) {
         this.clipBoard.set(clipBoard);
     }
@@ -63,7 +65,7 @@ public class CommandInvoker {
         return history;
     }
 
-    public SimpleIntegerProperty getIndex(){
+    public SimpleIntegerProperty getIndex() {
         return index;
     }
 

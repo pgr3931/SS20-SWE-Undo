@@ -21,7 +21,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public void redo() {
-
+        operationReceiver.select(index, deletedString.length());
+        execute();
     }
 
     @Override

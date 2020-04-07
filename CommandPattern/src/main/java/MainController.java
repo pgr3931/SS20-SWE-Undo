@@ -1,8 +1,7 @@
-import command.pattern.*;
+import command.pattern.CommandInvoker;
+import command.pattern.OperationReceiver;
 import command.pattern.commands.*;
-
 import javafx.beans.binding.Bindings;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -63,10 +62,13 @@ public class MainController implements Initializable {
             }
         });
 
-        historyList.addEventFilter(MouseEvent.MOUSE_PRESSED, Event::consume);
+        textArea.addEventFilter(KeyEvent.KEY_TYPED, Event::consume);
 
-        invoker.getIndex().addListener((obs, oldValue, newValue) ->{
+        historyList.addEventFilter(MouseEvent.MOUSE_PRESSED, Event::consume);
+        invoker.getIndex().addListener((obs, oldValue, newValue) -> {
             historyList.getSelectionModel().select(newValue.intValue());
+            // JavaFx is way too buggy... ignore the exception
+            historyList.scrollTo(newValue.intValue());
         });
 
         undoBtn.disableProperty().bind(Bindings.isEmpty(invoker.getHistory()).or(invoker.getIndex().isEqualTo(-1)));

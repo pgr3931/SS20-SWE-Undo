@@ -17,7 +17,9 @@ public abstract class Command {
 
     public abstract void undo();
 
-    public abstract void redo();
+    public void redo() {
+        execute();
+    }
 
     public abstract boolean execute();
 

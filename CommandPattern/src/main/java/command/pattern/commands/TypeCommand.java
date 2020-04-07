@@ -22,10 +22,10 @@ public class TypeCommand extends Command {
         if (deletedChar == null) {
             try {
                 operationReceiver.deleteText(index, index + 1);
-            }catch (IndexOutOfBoundsException e){
+            } catch (IndexOutOfBoundsException e) {
                 System.out.println(index);
             }
-        } else if(isShiftDown){
+        } else if (isShiftDown) {
             operationReceiver.insertText(deletedChar.toUpperCase(), index - 1);
         } else {
             operationReceiver.insertText(deletedChar, index - 1);
@@ -33,15 +33,19 @@ public class TypeCommand extends Command {
     }
 
     @Override
-    public void redo() {
-
-    }
-
-    @Override
     public boolean execute() {
+        if (code.isLetterKey() || code.isDigitKey()) {
+            if (isShiftDown) {
+                operationReceiver.insertText(code.getName(), index);
+            } else {
+                operationReceiver.insertText(code.getName().toLowerCase(), index);
+            }
+            return true;
+        }
+
         switch (code) {
             case BACK_SPACE:
-                if(operationReceiver.getSelection().length() > 0){
+                if (operationReceiver.getSelection().length() > 0) {
                     deletedChar = operationReceiver.getSelection();
                     index = operationReceiver.getIndex() + 1;
                     operationReceiver.deleteSelection();
@@ -54,7 +58,7 @@ public class TypeCommand extends Command {
                 }
                 return false;
             case DELETE:
-                if(operationReceiver.getSelection().length() > 0){
+                if (operationReceiver.getSelection().length() > 0) {
                     deletedChar = operationReceiver.getSelection();
                     index = operationReceiver.getIndex() + 1;
                     operationReceiver.deleteSelection();
@@ -74,17 +78,35 @@ public class TypeCommand extends Command {
             case SPACE:
                 operationReceiver.insertText(" ", index);
                 return true;
-            case ALPHANUMERIC:
+            case PERIOD:
                 if (isShiftDown) {
-                    operationReceiver.insertText(code.getName().toUpperCase(), index);
+                    operationReceiver.insertText(":", index);
                 } else {
-                    operationReceiver.insertText(code.getName(), index);
+                    operationReceiver.insertText(".", index);
                 }
                 return true;
-            case CAPS:
-            case SHIFT:
-                return false;
+            case COMMA:
+                if (isShiftDown) {
+                    operationReceiver.insertText(";", index);
+                } else {
+                    operationReceiver.insertText(",", index);
+                }
+                return true;
+            case MINUS:
+                if (isShiftDown) {
+                    operationReceiver.insertText("_", index);
+                } else {
+                    operationReceiver.insertText("-", index);
+                }
+                return true;
+
+            //And so on...
         }
-        return true;
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " " + code;
     }
 }

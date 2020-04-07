@@ -17,6 +17,10 @@ public class OperationReceiver {
         return area.getText();
     }
 
+    public void select(int from, int to) {
+        area.selectRange(from, to);
+    }
+
     public String getSelection() {
         return area.getSelectedText();
     }

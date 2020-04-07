@@ -57,9 +57,16 @@
 }
 
 .list-cell:even {
-     -fx-background-color: #3C434D;
- }
+    -fx-background-color: #3C434D;
+}
 
 .list-cell:odd {
     -fx-background-color: #2a2f36;
 }
+
+.list-view .scroll-bar:vertical {
+    -fx-scale-x: 0;
+    -fx-pref-width: 0;
+    -fx-padding: 0;
+}
+

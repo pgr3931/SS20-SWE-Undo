@@ -21,6 +21,7 @@ public class CutCommand extends Command {
 
     @Override
     public void redo() {
+        operationReceiver.select(index, cutString.length());
         execute();
     }
 
@@ -29,6 +30,7 @@ public class CutCommand extends Command {
         cutString = operationReceiver.getSelection();
         invoker.setClipBoard(cutString);
         index = operationReceiver.getIndex();
+        System.out.println(index);
         operationReceiver.deleteSelection();
         return true;
     }
