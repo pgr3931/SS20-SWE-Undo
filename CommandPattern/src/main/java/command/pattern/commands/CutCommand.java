@@ -15,23 +15,34 @@ public class CutCommand extends Command {
     }
 
     @Override
+    public boolean execute() {
+        cutString = operationReceiver.getSelection();
+        invoker.setClipBoard(cutString);
+        index = operationReceiver.getIndex();
+        operationReceiver.deleteSelection();
+        return true;
+    }
+
+    @Override
     public void undo() {
         operationReceiver.insertText(cutString, index);
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void redo() {
         operationReceiver.select(index, cutString.length());
         execute();
-    }
-
-    @Override
-    public boolean execute() {
-        cutString = operationReceiver.getSelection();
-        invoker.setClipBoard(cutString);
-        index = operationReceiver.getIndex();
-        System.out.println(index);
-        operationReceiver.deleteSelection();
-        return true;
     }
 }

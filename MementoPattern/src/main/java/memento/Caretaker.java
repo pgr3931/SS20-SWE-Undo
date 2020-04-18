@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class Caretaker{
     private Stack<Memento> _history = new Stack<>();
-    private SimpleBooleanProperty _isEmpty = new SimpleBooleanProperty();
+    private SimpleBooleanProperty _isEmpty = new SimpleBooleanProperty(true);
 
     public void undo(){
         if(!_history.isEmpty()) {

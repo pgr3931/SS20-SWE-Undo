@@ -36,9 +36,27 @@ public class MainController implements Initializable {
         invoker.undo();
     }
 
+
+
+
+
+
     public void redo() {
         invoker.redo();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public TextArea textArea;
     public ListView<Command> historyList;

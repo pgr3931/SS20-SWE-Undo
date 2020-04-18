@@ -7,7 +7,7 @@ import javafx.scene.input.KeyCode;
 public class TypeCommand extends Command {
     private int index;
     private boolean isShiftDown;
-    public KeyCode code;
+    private KeyCode code;
     private String deletedChar;
 
     public TypeCommand(OperationReceiver t, CommandInvoker i, int index, boolean isShiftDown, KeyCode code) {
@@ -15,21 +15,6 @@ public class TypeCommand extends Command {
         this.index = index;
         this.isShiftDown = isShiftDown;
         this.code = code;
-    }
-
-    @Override
-    public void undo() {
-        if (deletedChar == null) {
-            try {
-                operationReceiver.deleteText(index, index + 1);
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println(index);
-            }
-        } else if (isShiftDown) {
-            operationReceiver.insertText(deletedChar.toUpperCase(), index - 1);
-        } else {
-            operationReceiver.insertText(deletedChar, index - 1);
-        }
     }
 
     @Override
@@ -104,6 +89,18 @@ public class TypeCommand extends Command {
         }
         return false;
     }
+
+    @Override
+    public void undo() {
+        if (deletedChar == null) {
+            operationReceiver.deleteText(index, index + 1);
+        } else if (isShiftDown) {
+            operationReceiver.insertText(deletedChar.toUpperCase(), index - 1);
+        } else {
+            operationReceiver.insertText(deletedChar, index - 1);
+        }
+    }
+
 
     @Override
     public String toString() {

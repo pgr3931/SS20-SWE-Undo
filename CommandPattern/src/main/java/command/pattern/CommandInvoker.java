@@ -16,9 +16,10 @@ public class CommandInvoker {
 
     public void execute(Command c) {
         if (c.execute()) {
-            removeHistoryFromIndex();
+            removeHistoryFromIndex(); // [a, b, c]
             history.add(c);
             index.set(index.get() + 1);
+
             // delete the oldest command after 100 executions
             if (history.size() >= 100) {
                 history.remove(0);
@@ -33,6 +34,10 @@ public class CommandInvoker {
             index.set(index.get() - 1);
         }
     }
+
+
+
+
 
     public void redo() {
         if (!history.isEmpty() && index.get() < history.size() - 1) {

@@ -15,13 +15,30 @@ public abstract class Command {
         invoker = i;
     }
 
+    public abstract boolean execute();
+
     public abstract void undo();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void redo() {
         execute();
     }
-
-    public abstract boolean execute();
 
     @Override
     public String toString() {

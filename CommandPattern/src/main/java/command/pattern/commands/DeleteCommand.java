@@ -15,9 +15,30 @@ public class DeleteCommand extends Command {
     }
 
     @Override
+    public boolean execute() {
+        deletedString = operationReceiver.getSelection();
+        index = operationReceiver.getIndex();
+        operationReceiver.deleteSelection();
+        return true;
+    }
+
+    @Override
     public void undo() {
         operationReceiver.insertText(deletedString, index);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     public void redo() {
@@ -25,11 +46,4 @@ public class DeleteCommand extends Command {
         execute();
     }
 
-    @Override
-    public boolean execute() {
-        deletedString = operationReceiver.getSelection();
-        index = operationReceiver.getIndex();
-        operationReceiver.deleteSelection();
-        return true;
-    }
 }

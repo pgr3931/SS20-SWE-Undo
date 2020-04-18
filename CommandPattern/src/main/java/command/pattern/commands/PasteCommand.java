@@ -15,15 +15,15 @@ public class PasteCommand extends Command {
     }
 
     @Override
-    public void undo() {
-        operationReceiver.deleteText(start, end);
-    }
-
-    @Override
     public boolean execute() {
         String s = invoker.getClipBoard();
         start = operationReceiver.paste(s);
         end = start + s.length();
         return true;
+    }
+
+    @Override
+    public void undo() {
+        operationReceiver.deleteText(start, end);
     }
 }
