@@ -1,5 +1,6 @@
 package command.pattern;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TextArea;
 
 /**
@@ -8,6 +9,19 @@ import javafx.scene.control.TextArea;
  */
 public class OperationReceiver {
     private TextArea area;
+    private SimpleStringProperty clipBoard = new SimpleStringProperty();
+
+    public SimpleStringProperty clipBoardProperty() {
+        return clipBoard;
+    }
+
+    public void setClipBoard(String clipBoard) {
+        this.clipBoard.set(clipBoard);
+    }
+
+    public String getClipBoard() {
+        return clipBoard.get();
+    }
 
     public OperationReceiver(TextArea area) {
         this.area = area;

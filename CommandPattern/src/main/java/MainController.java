@@ -21,42 +21,24 @@ public class MainController implements Initializable {
     private CommandInvoker invoker;
 
     public void cut() {
-        invoker.execute(new CutCommand(operationReceiver, invoker));
+        invoker.execute(new CutCommand(operationReceiver));
     }
 
     public void paste() {
-        invoker.execute(new PasteCommand(operationReceiver, invoker));
+        invoker.execute(new PasteCommand(operationReceiver));
     }
 
     public void delete() {
-        invoker.execute(new DeleteCommand(operationReceiver, invoker));
+        invoker.execute(new DeleteCommand(operationReceiver));
     }
 
     public void undo() {
         invoker.undo();
     }
 
-
-
-
-
-
     public void redo() {
         invoker.redo();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public TextArea textArea;
     public ListView<Command> historyList;
@@ -76,7 +58,7 @@ public class MainController implements Initializable {
         textArea.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if (!e.getCode().isArrowKey()) {
                 e.consume();
-                invoker.execute(new TypeCommand(operationReceiver, invoker, textArea.getCaretPosition(), e.isShiftDown(), e.getCode()));
+                invoker.execute(new TypeCommand(operationReceiver, textArea.getCaretPosition(), e.isShiftDown(), e.getCode()));
             }
         });
 
@@ -93,7 +75,7 @@ public class MainController implements Initializable {
         redoBtn.disableProperty().bind(Bindings.isEmpty(invoker.getHistory()).or(invoker.getIndex().isEqualTo(Bindings.size(invoker.getHistory()).subtract(1))));
         cutBtn.disableProperty().bind(Bindings.isEmpty(textArea.selectedTextProperty()));
         deleteBtn.disableProperty().bind(Bindings.isEmpty(textArea.selectedTextProperty()));
-        pasteBtn.disableProperty().bind(Bindings.isEmpty(invoker.clipBoardProperty()));
+        pasteBtn.disableProperty().bind(Bindings.isEmpty(operationReceiver.clipBoardProperty()));
     }
 
 

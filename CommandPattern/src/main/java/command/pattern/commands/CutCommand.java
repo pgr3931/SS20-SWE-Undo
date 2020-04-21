@@ -1,6 +1,5 @@
 package command.pattern.commands;
 
-import command.pattern.CommandInvoker;
 import command.pattern.OperationReceiver;
 
 /**
@@ -10,14 +9,14 @@ public class CutCommand extends Command {
     private String cutString;
     private int index;
 
-    public CutCommand(OperationReceiver t, CommandInvoker i) {
-        super(t, i);
+    public CutCommand(OperationReceiver t) {
+        super(t);
     }
 
     @Override
     public boolean execute() {
         cutString = operationReceiver.getSelection();
-        invoker.setClipBoard(cutString);
+        operationReceiver.setClipBoard(cutString);
         index = operationReceiver.getIndex();
         operationReceiver.deleteSelection();
         return true;
@@ -27,18 +26,6 @@ public class CutCommand extends Command {
     public void undo() {
         operationReceiver.insertText(cutString, index);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void redo() {

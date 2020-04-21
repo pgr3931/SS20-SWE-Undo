@@ -2,7 +2,6 @@ package command.pattern;
 
 import command.pattern.commands.Command;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,11 +11,10 @@ import javafx.collections.ObservableList;
 public class CommandInvoker {
     private ObservableList<Command> history = FXCollections.observableArrayList();
     private SimpleIntegerProperty index = new SimpleIntegerProperty(-1);
-    private SimpleStringProperty clipBoard = new SimpleStringProperty();
 
     public void execute(Command c) {
         if (c.execute()) {
-            removeHistoryFromIndex(); // [a, b, c]
+            removeHistoryFromIndex(); // [a, b, d]
             history.add(c);
             index.set(index.get() + 1);
 
@@ -35,10 +33,6 @@ public class CommandInvoker {
         }
     }
 
-
-
-
-
     public void redo() {
         if (!history.isEmpty() && index.get() < history.size() - 1) {
             index.set(index.get() + 1);
@@ -54,14 +48,6 @@ public class CommandInvoker {
         }
     }
 
-    public void setClipBoard(String clipBoard) {
-        this.clipBoard.set(clipBoard);
-    }
-
-    public String getClipBoard() {
-        return clipBoard.get();
-    }
-
     /**
      * Only used by the main controller to disable buttons
      * Not part of the pattern
@@ -72,9 +58,5 @@ public class CommandInvoker {
 
     public SimpleIntegerProperty getIndex() {
         return index;
-    }
-
-    public SimpleStringProperty clipBoardProperty() {
-        return clipBoard;
     }
 }

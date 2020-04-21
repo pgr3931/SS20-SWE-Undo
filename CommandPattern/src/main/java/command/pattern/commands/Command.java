@@ -1,6 +1,5 @@
 package command.pattern.commands;
 
-import command.pattern.CommandInvoker;
 import command.pattern.OperationReceiver;
 
 /**
@@ -8,33 +7,14 @@ import command.pattern.OperationReceiver;
  */
 public abstract class Command {
     protected OperationReceiver operationReceiver;
-    protected CommandInvoker invoker;
 
-    public Command(OperationReceiver t, CommandInvoker i) {
+    public Command(OperationReceiver t) {
         operationReceiver = t;
-        invoker = i;
     }
 
     public abstract boolean execute();
 
     public abstract void undo();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public void redo() {
         execute();

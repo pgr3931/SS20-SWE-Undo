@@ -1,6 +1,5 @@
 package command.pattern.commands;
 
-import command.pattern.CommandInvoker;
 import command.pattern.OperationReceiver;
 import javafx.scene.input.KeyCode;
 
@@ -10,8 +9,8 @@ public class TypeCommand extends Command {
     private KeyCode code;
     private String deletedChar;
 
-    public TypeCommand(OperationReceiver t, CommandInvoker i, int index, boolean isShiftDown, KeyCode code) {
-        super(t, i);
+    public TypeCommand(OperationReceiver t, int index, boolean isShiftDown, KeyCode code) {
+        super(t);
         this.index = index;
         this.isShiftDown = isShiftDown;
         this.code = code;

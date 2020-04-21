@@ -1,6 +1,5 @@
 package command.pattern.commands;
 
-import command.pattern.CommandInvoker;
 import command.pattern.OperationReceiver;
 
 /**
@@ -10,13 +9,13 @@ public class PasteCommand extends Command {
     private int start;
     private int end;
 
-    public PasteCommand(OperationReceiver t, CommandInvoker i) {
-        super(t, i);
+    public PasteCommand(OperationReceiver t) {
+        super(t);
     }
 
     @Override
     public boolean execute() {
-        String s = invoker.getClipBoard();
+        String s = operationReceiver.getClipBoard();
         start = operationReceiver.paste(s);
         end = start + s.length();
         return true;

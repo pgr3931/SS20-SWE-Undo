@@ -1,6 +1,5 @@
 package command.pattern.commands;
 
-import command.pattern.CommandInvoker;
 import command.pattern.OperationReceiver;
 
 /**
@@ -10,8 +9,8 @@ public class DeleteCommand extends Command {
     private String deletedString;
     private int index;
 
-    public DeleteCommand(OperationReceiver t, CommandInvoker i) {
-        super(t, i);
+    public DeleteCommand(OperationReceiver t) {
+        super(t);
     }
 
     @Override
@@ -26,19 +25,6 @@ public class DeleteCommand extends Command {
     public void undo() {
         operationReceiver.insertText(deletedString, index);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void redo() {
