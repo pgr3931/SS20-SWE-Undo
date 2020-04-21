@@ -8,8 +8,8 @@ import command.pattern.OperationReceiver;
 public abstract class Command {
     protected OperationReceiver operationReceiver;
 
-    public Command(OperationReceiver t) {
-        operationReceiver = t;
+    public Command(OperationReceiver receiver) {
+        operationReceiver = receiver;
     }
 
     public abstract boolean execute();

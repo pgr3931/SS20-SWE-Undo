@@ -9,8 +9,8 @@ public class DeleteCommand extends Command {
     private String deletedString;
     private int index;
 
-    public DeleteCommand(OperationReceiver t) {
-        super(t);
+    public DeleteCommand(OperationReceiver receiver) {
+        super(receiver);
     }
 
     @Override

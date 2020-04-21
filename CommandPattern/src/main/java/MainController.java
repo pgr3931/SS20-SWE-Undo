@@ -40,6 +40,11 @@ public class MainController implements Initializable {
         invoker.redo();
     }
 
+
+
+
+
+
     public TextArea textArea;
     public ListView<Command> historyList;
     public Button cutBtn;
@@ -54,11 +59,11 @@ public class MainController implements Initializable {
         invoker = new CommandInvoker();
         historyList.setItems(invoker.getHistory());
 
-        // Overwrite default text processing
+        // Override default text processing
         textArea.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
             if (!e.getCode().isArrowKey()) {
                 e.consume();
-                invoker.execute(new TypeCommand(operationReceiver, textArea.getCaretPosition(), e.isShiftDown(), e.getCode()));
+                invoker.execute(new TypeCommand(operationReceiver, e.isShiftDown(), e.getCode()));
             }
         });
 
@@ -77,6 +82,4 @@ public class MainController implements Initializable {
         deleteBtn.disableProperty().bind(Bindings.isEmpty(textArea.selectedTextProperty()));
         pasteBtn.disableProperty().bind(Bindings.isEmpty(operationReceiver.clipBoardProperty()));
     }
-
-
 }

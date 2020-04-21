@@ -14,7 +14,7 @@ public class CommandInvoker {
 
     public void execute(Command c) {
         if (c.execute()) {
-            removeHistoryFromIndex(); // [a, b, d]
+            removeHistoryFromIndex(); // [a, b, c]
             history.add(c);
             index.set(index.get() + 1);
 

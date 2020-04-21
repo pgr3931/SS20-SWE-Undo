@@ -9,8 +9,8 @@ public class PasteCommand extends Command {
     private int start;
     private int end;
 
-    public PasteCommand(OperationReceiver t) {
-        super(t);
+    public PasteCommand(OperationReceiver receiver) {
+        super(receiver);
     }
 
     @Override

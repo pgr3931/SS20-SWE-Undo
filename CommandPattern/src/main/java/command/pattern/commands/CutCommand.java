@@ -9,8 +9,8 @@ public class CutCommand extends Command {
     private String cutString;
     private int index;
 
-    public CutCommand(OperationReceiver t) {
-        super(t);
+    public CutCommand(OperationReceiver receiver) {
+        super(receiver);
     }
 
     @Override

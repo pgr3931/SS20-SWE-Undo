@@ -11,6 +11,11 @@ public class OperationReceiver {
     private TextArea area;
     private SimpleStringProperty clipBoard = new SimpleStringProperty();
 
+    public OperationReceiver(TextArea area) {
+        this.area = area;
+    }
+
+
     public SimpleStringProperty clipBoardProperty() {
         return clipBoard;
     }
@@ -23,12 +28,12 @@ public class OperationReceiver {
         return clipBoard.get();
     }
 
-    public OperationReceiver(TextArea area) {
-        this.area = area;
-    }
-
     public String getText() {
         return area.getText();
+    }
+
+    public int getCaretPosition() {
+        return area.getCaretPosition();
     }
 
     public void select(int from, int to) {
